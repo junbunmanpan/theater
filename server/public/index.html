@@ -13,7 +13,7 @@
         <ol>
             <li><a href="/extension.zip" download>拡張機能をダウンロード</a></li>
             <li>ZIPファイルを解凍する</li>
-            <li><cord>chrome://extensions/</cord>にアクセスする</li>
+            <li><code id="chrome-url">chrome://extensions/</code><button onclick="copyToClipboard()">コピー</button>にアクセスする</li>
             <li>右上の「デベロッパーモード」をONにする</li>
             <li>「パッケージ化されていない拡張機能を読み込む」をクリック</li>
             <li>解凍したフォルダを選択</li>
@@ -29,4 +29,15 @@
       
         <p>⚠️ 参加者側も拡張機能の導入が必要です。</p>
     </body>
+    <script>
+        function copyToClipboard() {
+          const text = document.getElementById("chrome-url").textContent;
+          navigator.clipboard.writeText(text).then(() => {
+            alert("コピーしました！");
+          }).catch(err => {
+            alert("コピーに失敗しました");
+            console.error(err);
+          });
+        }
+      </script>
 </html>
