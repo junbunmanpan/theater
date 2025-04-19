@@ -26,6 +26,8 @@
           <li>ホストが「Enterキー」で再生開始</li>
           <li>全員の画面で映画が同時にスタート！</li>
         </ol>
+
+        <button id="playBtn">▶️ 再生開始</button>
       
         <p>⚠️ 参加者側も拡張機能の導入が必要です。</p>
     </body>
@@ -39,5 +41,11 @@
             console.error(err);
           });
         }
+
+        const socket = new WebSocket(location.protocol === "https:" ? "wss://" + location.host : "ws://" + location.host);
+
+        document.getElementById("playBtn").addEventListener("click", () => {
+            socket.send("play");
+        });
       </script>
 </html>

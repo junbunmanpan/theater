@@ -23,13 +23,15 @@ wss.on('connection', ws => {
   ws.on('message', message => {
     console.log('Received: %s', message);
     
-    // 受け取ったメッセージをすべてのクライアントに送信
+  // メッセージが "play" のときは全クライアントに転送
+  if (message === 'play') {
     wss.clients.forEach(client => {
-      if (client !== ws && client.readyState === WebSocket.OPEN) {
-        client.send(message);
+      if (client.readyState === WebSocket.OPEN) {
+        client.send('play');
       }
     });
-  });
+  }
+});
   
   // クライアントが切断されたとき
   ws.on('close', () => {
@@ -37,18 +39,4 @@ wss.on('connection', ws => {
   });
 });
 
-// ホストが ENTER を押すと「play」信号を送る
-const readline = require('readline');
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
 
-rl.on('line', () => {
-  console.log("📤 Sending play command to all clients...");
-  wss.clients.forEach(function each(client) {
-    if (client.readyState === WebSocket.OPEN) {
-      client.send('play');
-    }
-  });
-});
