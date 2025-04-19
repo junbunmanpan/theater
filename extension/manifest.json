@@ -1,0 +1,16 @@
+{
+    "manifest_version": 3,
+    "name": "Prime Sync Auto Player",
+    "version": "1.0",
+    "description": "Automatically plays video on Amazon Prime Video.",
+    "permissions": ["scripting", "tabs"],
+    "host_permissions": ["https://www.amazon.co.jp/*"],
+    "content_scripts": [
+      {
+        "matches": ["https://www.amazon.co.jp/*"],
+        "js": ["content.js"],
+        "run_at": "document_idle"
+      }
+    ]
+  }
+  
