@@ -1,0 +1,16 @@
+body {
+    font-family: sans-serif;
+    text-align: senter;
+    margin: 5% auto;
+    max-width: 600px;
+    padding: 1em;
+}
+
+h1 {
+    text-align: left;
+}
+
+a {
+    color: #007acc;
+    text-decoration: none;
+}
