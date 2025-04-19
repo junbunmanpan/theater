@@ -1,8 +1,11 @@
 const express = require('express');
 const WebSocket = require('ws');
-
+const path = require('path');
 const app = express();
 const port = 3000;
+
+// publicフォルダを静的に読み込む
+app.use(express.static(path.join(__dirname, 'public')));
 
 // HTTPサーバーを立ち上げる
 const server = app.listen(port, () => {
