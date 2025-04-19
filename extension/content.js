@@ -1,5 +1,9 @@
 // WebSocketでサーバーに接続
-const socket = new WebSocket('ws://localhost:3000');
+const socket = new WebSocket(
+  location.hostname === "localhost"
+    ? "ws://localhost:3000"
+    : "wss://theater-8xcq.onrender.com"
+);
 
 // ログイン確認用
 socket.addEventListener('open', () => {
